@@ -11,6 +11,7 @@ function App() {
   const [data, setData] = useState([]);
   const [fetchError, setFetchError] = useState(null);
   const [url, setUrl] = useState(API_URL);
+  const [selectedBtn, setSelectedBtn] = useState("users");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,10 +19,8 @@ function App() {
         const response = await fetch(url);
         if (!response.ok) throw Error("Did not receive expected data");
         const data = await response.json();
-        console.log(data);
         setData(data);
       } catch (error) {
-        console.log(error.message);
         setFetchError(error.message);
       } finally {
         // ...
@@ -33,15 +32,17 @@ function App() {
 
   const handleGetData = (data) => {
     const dataUrl = url.slice(0, 37) + data;
+    const selectedBtn = data;
+    setSelectedBtn(selectedBtn);
     setUrl(dataUrl);
   };
 
   return (
     <>
       <nav>
-        <GetUsers handleGetData={handleGetData} />
-        <GetPosts handleGetData={handleGetData} />
-        <GetComments handleGetData={handleGetData} />
+        <GetUsers handleGetData={handleGetData} selectedBtn={selectedBtn} />
+        <GetPosts handleGetData={handleGetData} selectedBtn={selectedBtn} />
+        <GetComments handleGetData={handleGetData} selectedBtn={selectedBtn} />
       </nav>
       <main>
         {!fetchError && <ViewData data={data} />}
