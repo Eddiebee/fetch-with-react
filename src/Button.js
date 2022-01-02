@@ -1,7 +1,5 @@
 import { selectedBtnStyle } from "./selectedBtnStyle";
-
-const GetUsers = ({ handleGetData, selectedBtn }) => {
-  const data = "users";
+const Button = ({ handleGetData, selectedBtn, data }) => {
   return (
     <button
       onClick={() => handleGetData(data)}
@@ -12,4 +10,4 @@ const GetUsers = ({ handleGetData, selectedBtn }) => {
   );
 };
 
-export default GetUsers;
+export default Button;

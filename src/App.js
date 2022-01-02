@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import GetUsers from "./GetUsers";
-import GetPosts from "./GetPosts";
-import GetComments from "./GetComments";
+import Button from "./Button";
 import ViewData from "./ViewData";
 import ErrorMessage from "./ErrorMessage";
 
@@ -40,9 +38,21 @@ function App() {
   return (
     <>
       <nav>
-        <GetUsers handleGetData={handleGetData} selectedBtn={selectedBtn} />
-        <GetPosts handleGetData={handleGetData} selectedBtn={selectedBtn} />
-        <GetComments handleGetData={handleGetData} selectedBtn={selectedBtn} />
+        <Button
+          handleGetData={handleGetData}
+          selectedBtn={selectedBtn}
+          data="users"
+        />
+        <Button
+          handleGetData={handleGetData}
+          selectedBtn={selectedBtn}
+          data="posts"
+        />
+        <Button
+          handleGetData={handleGetData}
+          selectedBtn={selectedBtn}
+          data="comments"
+        />
       </nav>
       <main>
         {!fetchError && <ViewData data={data} />}
